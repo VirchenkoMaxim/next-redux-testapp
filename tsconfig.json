@@ -29,6 +29,7 @@
     "next-env.d.ts",
     "next.config.js",
     "pages/_app.jsx",
-    "store/index.js"
+    "store/index.js",
+    "store/posts/reducer.js"
   ]
 }

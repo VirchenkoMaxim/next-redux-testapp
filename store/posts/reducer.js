@@ -2,18 +2,15 @@ import { HYDRATE } from "next-redux-wrapper";
 import * as types from "./types";
 
 const initialState = {
-  loading: false as boolean,
-  posts: [] as Array<types.Post>,
-  post: {} as types.ExtendedPost,
-  error: "" as string,
+  loading: false,
+  posts: [],
+  post: {},
+  error: "",
   isDeleted: false,
 };
-export type InitialState = typeof initialState;
+// export type InitialState = typeof initialState;
 
-const reducer = (
-  state: InitialState = initialState,
-  action: types.Actions
-): InitialState => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case HYDRATE:
       return { ...state, ...action.payload };

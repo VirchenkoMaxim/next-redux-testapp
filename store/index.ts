@@ -1,30 +1,19 @@
-// import { applyMiddleware, combineReducers, createStore } from "redux";
-// import createSagaMiddleware from "redux-saga";
-// import { postsReducer } from "./posts";
-// import rootSaga from "./rootSaga";
-
-// export const rootReducer = combineReducers({
-//   posts: postsReducer,
-// });
-
-// const sagaMiddleware = createSagaMiddleware();
-
-// const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-
-// sagaMiddleware.run(rootSaga);
-
-// // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// // @ts-ignore
-// global.store = store;
-// export default store;
-
 import { createStore, applyMiddleware, Store } from "redux";
-import logger from "redux-logger";
 import createSagaMiddleware, { Task } from "redux-saga";
 import { MakeStore, Context, createWrapper } from "next-redux-wrapper";
 import rootSaga from "./rootSaga";
-import reducer, { InitialState } from "./posts/reducer";
+import reducer from "./posts/reducer";
+import logger from "redux-logger";
+import * as types from "./posts/types";
 
+const initialState = {
+  loading: false as boolean,
+  posts: [] as Array<types.Post>,
+  post: {} as types.ExtendedPost,
+  error: "" as string,
+  isDeleted: false,
+};
+export type InitialState = typeof initialState;
 export interface SagaStore extends Store {
   sagaTask: Task;
 }
