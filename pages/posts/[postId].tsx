@@ -65,7 +65,9 @@ const Post: FC = () => {
   const [commentVal] = useState({ body: "" });
 
   useEffect(() => {
-    dispatch(postsActions.requestPost(postId, comments));
+    if (postId) {
+      dispatch(postsActions.requestPost(postId, comments));
+    }
   }, [postId, comments]);
 
   const editModeToogle = (): void => {

@@ -14,17 +14,11 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case HYDRATE:
       return { ...state, ...action.payload };
-
     case types.SET_LOADING:
       return {
         ...state,
         loading: true,
-      };
-    case types.SET_FAILED:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
+        error: "",
       };
     case types.SET_POSTS_SUCCESS:
       return {
@@ -71,6 +65,12 @@ const reducer = (state = initialState, action) => {
           comments: [...state.post.comments, action.payload],
         },
         loading: false,
+      };
+    case types.SET_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
     default:
       return state;
